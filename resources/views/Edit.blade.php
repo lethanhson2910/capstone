@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <html>
 
 <head>
@@ -13,15 +22,18 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" value="{{$nhanvien->name}}" name="txtName">
+                <input type="text" class="form-control" value="{{$nhanvien->name}}" name="name">
                 <br />
                 <br />
                 <label for="exampleInputEmail1">Email</label>
-                <input type="text" class="form-control" value="{{$nhanvien->email}}" name="txtEmail">
+                <input type="text" class="form-control" value="{{$nhanvien->email}}" name="email">
                 <br />
                 <br />
                 <label for="exampleInputEmail1">Gender</label>
-                <input type="text" class="form-control" value="{{$nhanvien->gender}}" name="txtGender">
+                <select name="gender">
+                    <option value="Nam" {{ $nhanvien->gender == 'Nam' ? "selected" : ""  }} >Nam</option>
+                    <option value="Nữ" {{ $nhanvien->gender == 'Nữ' ? "selected" : ""  }}>Nữ</option>
+                </select>
                 <br />
                 <br />
                 <label for="exampleInputEmail1">Udated at</label>

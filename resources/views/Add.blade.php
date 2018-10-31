@@ -1,17 +1,28 @@
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{route('home.user.create')}}" method="post">
     {{csrf_field()}}
     <label>Email </label>
     <br />
-    <input type="text" name="txtEmail" placeholder="Vui lòng nhập Email">
+    <input type="text" name="email" placeholder="Vui lòng nhập Email">
     <br />
     <label>Name </label>
     <br />
-    <input type="text" name="txtName" placeholder="Vui lòng nhập Tên">
+    <input type="text" name="name" placeholder="Vui lòng nhập Tên">
     <br />
     <label>Gender</label>
-    <br />
-    <input type="text" name="txtGender" placeholder="Vui lòng nhập Giới Tính">
-    <br />
+    <select name="gender">
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+    </select>
     <br />
     <input type="submit">
 
