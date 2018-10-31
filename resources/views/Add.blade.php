@@ -1,4 +1,4 @@
-<form action="{{('Them')}}" method="post">
+<form action="{{route('home.user.create')}}" method="post">
     {{csrf_field()}}
     <label>Email </label>
     <br />

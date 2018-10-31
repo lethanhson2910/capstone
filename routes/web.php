@@ -67,15 +67,15 @@
 // });
 // Route::post('Them', ['as'=>'','uses'=> 'HomeController@Add']);
 
-Route::get('Index','HomeController@index');
+Route::get('Index','HomeController@index')->name('home.index');
 
-Route::get('user/create','HomeController@create');
+Route::get('user/create','HomeController@create')->name('home.user.create');
 
-Route::post('user/create','HomeController@store');
+Route::post('user/create','HomeController@store')->name('home.user.create');
 
-Route::get('user/{id}/edit','HomeController@edit');
+Route::get('user/edit/{id}','HomeController@edit')->name('home.user.edit');
 
-Route::post('user/update','HomeController@update');
+Route::post('user/edit/{id}','HomeController@update')->name('home.user.edit');
 
 
-Route::get('user/{id}/delete','HomeController@delete');
+Route::get('user/delete/{id}','HomeController@delete')->name('home.user.delete');;

@@ -22,19 +22,12 @@ class HomeController extends Controller
     }
     public function store( Request $request)
     {
-      $Request = $request->all();
-      $name = $Request['name'];
-      $email = $Request['email'];
-      $gender = $Request['gender'];
-
-      $dataInsertToDatabase = array(
-        'name' => $name,
-        'email' => $email,
-        'gender'=>$gender,
-      );
-      $nhanvien = new nhanvien();
-      $nhanvien->insert($dataInsertToDatabase);
-      return redirect()->action('HomeController@index');
+      $nhanvien = new nhanvien;
+      $nhanvien->name = $request->txtName;
+      $nhanvien->email = $request->txtEmail;
+      $nhanvien->gender = $request->txtGender;
+      $nhanvien->save();
+      return redirect()->route('home.index');
     }
 
 
@@ -42,32 +35,25 @@ class HomeController extends Controller
 
     public function edit($id)
     {
-        $nhanvien = new nhanvien();
-        $getnhanvienById = $nhanvien->find($id)->toArray();
-        return view("Edit")->with('getnhanvienById', $getnhanvienById);
+        $nhanvien = nhanvien::find($id);
+
+        return view("Edit",compact('nhanvien'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $Request = $request->all();
-        $name        = $Request['name'];
-        $email      = $Request['email'];
-        $gender     = $Request['gender'];
-        $id = $Request['id'];
+        $nhanvien = nhanvien::find($id);
+        $nhanvien->name = $request->txtName;
+        $nhanvien->email = $request->txtEmail;
+        $nhanvien->gender = $request->txtGender;
+        $nhanvien->save();
 
-        $nhanvien               = new nhanvien();
-        $getnhanvienById           = $nhanvien->find($id);
-        $getnhanvienById->name      = $name;
-        $getnhanvienById->email    = $email;
-        $getnhanvienById->gender   = $gender;
-        $getnhanvienById->save();
-
-        return redirect()->action('HomeController@index');
+        return redirect()->route('home.index');
     }
 
     public function delete($id)
     {
         nhanvien::find($id)->delete();
-        return redirect()->action('HomeController@index');
+        return redirect()->route('home.index');
     }
 }
