@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Nhanvien;
+use App\Khoa;
 
 class HomeController extends Controller
 {
@@ -12,13 +13,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        $nhanvien = Nhanvien::all();
+        $nhanvien = nhanvien::all();
 
         return view('List', compact('nhanvien'));
     }
     public function create()
     {
-      return view('Add');
+      $khoa = Khoa::all();
+
+      return view('Add', compact('khoa'));
     }
     public function store( Request $request)
     {
@@ -35,7 +38,8 @@ class HomeController extends Controller
         'email.unique' =>'email da duoc su dung'
       ]
     );
-      $nhanvien = new nhanvien;
+      $nhanvien = new Nhanvien;
+      $nhanvien->id_khoa= $request->id_khoa;
       $nhanvien->name = $request->name;
       $nhanvien->email = $request->email;
       $nhanvien->gender = $request->gender;
@@ -70,6 +74,7 @@ class HomeController extends Controller
         'email.unique' =>'email da duoc su dung'
       ]
     );
+        $nhanvien->id_khoa = $request->id_khoa;
         $nhanvien->name = $request->name;
         $nhanvien->email = $request->email;
         $nhanvien->gender = $request->gender;

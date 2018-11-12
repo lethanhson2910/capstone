@@ -71,7 +71,21 @@
 
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Gửi</button>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Khoa</label>
+                        <div class="b-select-wrap">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <select class="form-control b-select" name="id_khoa">
+                                    <option value="1" {{ $nhanvien->id_khoa == '1' ? "selected" : ""  }}>CNTT</option>
+                                    <option value="2" {{ $nhanvien->id_khoa == '2' ? "selected" : ""  }}>NNA</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">EDIT</button>
 
 
                 </form>

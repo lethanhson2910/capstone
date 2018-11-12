@@ -60,15 +60,24 @@
 
                     <div class="form-group">
                         <label for="email" class="cols-sm-2 control-label">Gender</label>
-                            <div class="b-select-wrap">
-                                <select class="form-control b-select" name="gender">
-                                    <option value="Gender">Gender</option>
-                                    <option value="Nam" >Nam</option>
-                                    <option value="Nữ" > Nữ</option>
-                                </select>
+                        <div class="b-select-wrap">
+                            <select class="form-control b-select" name="gender">
+                                <option value="nam">Nam</option>
+                                <option value="nữ"> Nữ</option>
+                            </select>
                         </div>
                     </div>
-                        <button type="submit" class="btn btn-default">Gửi</button>
+                    <div class="form-group">
+                        <label for="id_khoa" class="cols-sm-2 control-label">Khoa</label>
+                        <div class="b-select-wrap">
+                            <select class="form-control b-select" name="id_khoa">
+                                @foreach($khoa as $k)
+                                <option value="{{$k->id}}">{{$k->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Gửi</button>
 
 
                 </form>
